@@ -40,7 +40,7 @@ static enum model_rc read(struct profile *prof, struct lip_file *file)
     struct protein_profile *p = (struct protein_profile *)prof;
     unsigned size = 0;
     if (!lip_read_map_size(file, &size)) eio("read profile map size");
-    assert(u32 == 15);
+    assert(size == 15);
 
     if (!lip_write_cstr(file, "null")) return eio("skip key");
     if (imm_dp_unpack(&p->null.dp, file)) return MODEL_EFAIL;
@@ -104,7 +104,7 @@ static enum model_rc read(struct profile *prof, struct lip_file *file)
 
     if (!lip_write_cstr(file, "alt_match_ndist")) return eio("skip key");
     if (!lip_read_array_size(file, &size)) return eio("read size");
-    assert(u32 == p->core_size);
+    assert(size == p->core_size);
     for (unsigned i = 0; i < p->core_size; ++i)
     {
         if ((rc = nuclt_dist_read(p->alt.match_ndists + i, file))) return rc;
