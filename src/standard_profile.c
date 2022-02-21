@@ -4,7 +4,7 @@
 #include "lite_pack/lite_pack.h"
 #include "logger.h"
 #include "metadata.h"
-#include "model_rc.h"
+#include "model/rc.h"
 #include "profile.h"
 #include "profile_types.h"
 #include "standard_profile.h"

@@ -3,8 +3,8 @@
 
 #include "entry_dist.h"
 #include "imm/imm.h"
-#include "model_limits.h"
-#include "model_rc.h"
+#include "model/limits.h"
+#include "model/rc.h"
 #include "nuclt_dist.h"
 #include "protein_cfg.h"
 #include "protein_node.h"

@@ -2,7 +2,7 @@
 #define MODEL_PROTEIN_STATE_H
 
 #include "imm/imm.h"
-#include "model_limits.h"
+#include "model/limits.h"
 
 enum protein_state_id
 {

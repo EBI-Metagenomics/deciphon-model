@@ -3,8 +3,8 @@
 
 #include "imm/imm.h"
 #include "metadata.h"
-#include "model_limits.h"
-#include "model_rc.h"
+#include "model/limits.h"
+#include "model/rc.h"
 #include "profile.h"
 #include "protein_cfg.h"
 #include "protein_model.h"

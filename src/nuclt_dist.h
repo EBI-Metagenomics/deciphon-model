@@ -2,7 +2,7 @@
 #define MODEL_NUCLT_DIST_H
 
 #include "imm/imm.h"
-#include "model_rc.h"
+#include "model/rc.h"
 
 struct nuclt_dist
 {

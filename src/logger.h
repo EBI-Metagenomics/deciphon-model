@@ -2,7 +2,7 @@
 #define MODEL_LOGGER_H
 
 #include "compiler.h"
-#include "model_rc.h"
+#include "model/rc.h"
 
 typedef void logger_print_t(char const *msg, void *arg);
 void logger_setup(logger_print_t *print, void *arg);

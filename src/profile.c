@@ -1,14 +1,13 @@
 #include "profile.h"
-#include <limits.h>
 
 void profile_del(struct profile *prof)
 {
     if (prof) prof->vtable.del(prof);
 }
 
-enum model_rc profile_read(struct profile *prof, struct lip_file *cmp)
+enum model_rc profile_read(struct profile *prof, struct lip_file *file)
 {
-    return prof->vtable.read(prof, cmp);
+    return prof->vtable.read(prof, file);
 }
 
 int profile_typeid(struct profile const *prof) { return prof->vtable.typeid; }

@@ -2,7 +2,7 @@
 #define MODEL_PROFILE_H
 
 #include "imm/imm.h"
-#include "model_rc.h"
+#include "model/rc.h"
 
 struct lip_file;
 struct profile;

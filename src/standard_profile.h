@@ -1,7 +1,7 @@
 #ifndef MODEL_STANDARD_PROFILE_H
 #define MODEL_STANDARD_PROFILE_H
 
-#include "model_rc.h"
+#include "model/rc.h"
 #include "profile.h"
 #include <stdio.h>
 

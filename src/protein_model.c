@@ -155,7 +155,8 @@ static void model_reset(struct protein_model *model)
 
 enum model_rc protein_model_setup(struct protein_model *m, unsigned core_size)
 {
-    if (core_size == 0) return error(MODEL_EINVAL, "`core_size` cannot be zero.");
+    if (core_size == 0)
+        return error(MODEL_EINVAL, "`core_size` cannot be zero.");
 
     if (core_size > PROTEIN_MODEL_CORE_SIZE_MAX)
         return error(MODEL_EINVAL, "`core_size` is too big.");
