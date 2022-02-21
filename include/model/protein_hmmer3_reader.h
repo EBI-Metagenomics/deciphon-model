@@ -1,12 +1,12 @@
-#ifndef DCP_PROTEIN_HMMER3_READER_H
-#define DCP_PROTEIN_HMMER3_READER_H
+#ifndef MODEL_PROTEIN_HMMER3_READER_H
+#define MODEL_PROTEIN_HMMER3_READER_H
 
-#include "common/rc.h"
 #include "hmr/hmr.h"
 #include "imm/imm.h"
-#include "metadata.h"
-#include "protein_cfg.h"
-#include "protein_model.h"
+#include "model/metadata.h"
+#include "model/protein_cfg.h"
+#include "model/protein_model.h"
+#include "model/rc.h"
 #include <stdio.h>
 
 struct protein_hmmer3_reader

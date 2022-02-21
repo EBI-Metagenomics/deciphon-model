@@ -5,6 +5,7 @@ project(
   VERSION 0.1.0
   LANGUAGES C)
 
+find_package(hmr REQUIRED)
 find_package(imm REQUIRED)
 find_package(lite_pack REQUIRED)
 
@@ -34,6 +35,7 @@ target_include_directories(
          $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
   PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
 
+target_link_libraries(${PROJECT_NAME} PUBLIC HMR::hmr)
 target_link_libraries(${PROJECT_NAME} PUBLIC IMM::imm)
 target_link_libraries(${PROJECT_NAME} PUBLIC LITE_PACK::lite_pack)
 target_link_libraries(${PROJECT_NAME} INTERFACE $<$<BOOL:${UNIX}>:m>)
