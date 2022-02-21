@@ -24,7 +24,7 @@ set(URL "https://deciphon.s3.eu-west-2.amazonaws.com")
 
 function(model_add_test name srcs)
   add_executable(${name} ${srcs})
-  target_link_libraries(${name} PRIVATE model)
+  target_link_libraries(${name} PRIVATE ${PROJECT_NAME})
   target_link_libraries(${name} PRIVATE HOPE::hope)
   target_compile_options(${name} PRIVATE ${WARNING_FLAGS})
   target_compile_features(${name} PRIVATE c_std_11)
@@ -41,8 +41,5 @@ function(model_add_test name srcs)
 endfunction()
 
 model_add_test(standard_profile standard_profile.c)
-# model_add_test(standard_db "standard_db.c;standard_db_examples.c")
-
-# model_add_test(protein_model protein_model.c)
+model_add_test(protein_model protein_model.c)
 model_add_test(protein_profile protein_profile.c)
-# model_add_test(protein_hmmer3_reader protein_hmmer3_reader.c)

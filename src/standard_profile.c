@@ -8,7 +8,7 @@
 #include "model/profile_types.h"
 #include "model/rc.h"
 #include "model/standard_profile.h"
-#include "standard_state.h"
+#include "model/standard_state.h"
 
 static void del(struct profile *prof)
 {

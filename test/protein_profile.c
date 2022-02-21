@@ -1,8 +1,6 @@
-#include "model/protein_profile.h"
 #include "hope/hope.h"
 #include "imm/imm.h"
-#include "model/protein_codec.h"
-#include "model/rc.h"
+#include "model/model.h"
 
 void test_protein_profile_uniform(void);
 void test_protein_profile_occupancy(void);

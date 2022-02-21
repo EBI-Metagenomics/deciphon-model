@@ -6,8 +6,8 @@
 #include "model/metadata.h"
 #include "model/profile.h"
 #include "model/profile_types.h"
+#include "model/protein_model.h"
 #include "model/protein_profile.h"
-#include "protein_model.h"
 #include <assert.h>
 #include <stdlib.h>
 

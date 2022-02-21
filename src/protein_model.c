@@ -1,9 +1,9 @@
-#include "protein_model.h"
+#include "model/protein_model.h"
 #include "logger.h"
 #include "model/entry_dist.h"
 #include "model/nuclt_dist.h"
-#include "protein_model.h"
-#include "protein_node.h"
+#include "model/protein_model.h"
+#include "model/protein_node.h"
 #include <assert.h>
 #include <limits.h>
 #include <stdlib.h>
