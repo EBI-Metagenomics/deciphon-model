@@ -13,7 +13,7 @@
 # License for the specific language governing permissions and limitations under
 # the License.
 
-include(CheckCXXSourceCompiles)
+include(CheckCSourceCompiles)
 
 set(USE_SANITIZER
     ""
@@ -44,20 +44,20 @@ function(test_san_flags return_var flags)
   unset(${return_var} CACHE)
   set(FLAGS_BACKUP ${CMAKE_REQUIRED_FLAGS})
   set(CMAKE_REQUIRED_FLAGS "${flags}")
-  check_cxx_source_compiles("int main() { return 0; }" ${return_var})
+  check_c_source_compiles("int main() { return 0; }" ${return_var})
   set(CMAKE_REQUIRED_FLAGS "${FLAGS_BACKUP}")
   set(CMAKE_REQUIRED_QUIET "${QUIET_BACKUP}")
 endfunction()
 
 if(USE_SANITIZER)
-  append("-fno-omit-frame-pointer" CMAKE_C_FLAGS CMAKE_CXX_FLAGS)
+  append("-fno-omit-frame-pointer" CMAKE_C_FLAGS CMAKE_C_FLAGS)
 
   unset(SANITIZER_SELECTED_FLAGS)
 
   if(UNIX)
 
     if(uppercase_CMAKE_BUILD_TYPE STREQUAL "DEBUG")
-      append("-O1" CMAKE_C_FLAGS CMAKE_CXX_FLAGS)
+      append("-O1" CMAKE_C_FLAGS CMAKE_C_FLAGS)
     endif()
 
     if(USE_SANITIZER MATCHES "([Aa]ddress)")
@@ -71,12 +71,12 @@ if(USE_SANITIZER)
 
         if(AFL)
           append_quoteless(AFL_USE_ASAN=1 CMAKE_C_COMPILER_LAUNCHER
-                           CMAKE_CXX_COMPILER_LAUNCHER)
+                           CMAKE_C_COMPILER_LAUNCHER)
         endif()
       else()
         message(
           FATAL_ERROR
-            "Address sanitizer not available for ${CMAKE_CXX_COMPILER}")
+            "Address sanitizer not available for ${CMAKE_C_COMPILER}")
       endif()
     endif()
 
@@ -100,12 +100,12 @@ if(USE_SANITIZER)
 
         if(AFL)
           append_quoteless(AFL_USE_MSAN=1 CMAKE_C_COMPILER_LAUNCHER
-                           CMAKE_CXX_COMPILER_LAUNCHER)
+                           CMAKE_C_COMPILER_LAUNCHER)
         endif()
       else()
         message(
           FATAL_ERROR
-            "Memory [With Origins] sanitizer not available for ${CMAKE_CXX_COMPILER}"
+            "Memory [With Origins] sanitizer not available for ${CMAKE_C_COMPILER}"
         )
       endif()
     endif()
@@ -123,12 +123,12 @@ if(USE_SANITIZER)
 
         if(AFL)
           append_quoteless(AFL_USE_UBSAN=1 CMAKE_C_COMPILER_LAUNCHER
-                           CMAKE_CXX_COMPILER_LAUNCHER)
+                           CMAKE_C_COMPILER_LAUNCHER)
         endif()
       else()
         message(
           FATAL_ERROR
-            "Undefined Behaviour sanitizer not available for ${CMAKE_CXX_COMPILER}"
+            "Undefined Behaviour sanitizer not available for ${CMAKE_C_COMPILER}"
         )
       endif()
     endif()
@@ -143,11 +143,11 @@ if(USE_SANITIZER)
 
         if(AFL)
           append_quoteless(AFL_USE_TSAN=1 CMAKE_C_COMPILER_LAUNCHER
-                           CMAKE_CXX_COMPILER_LAUNCHER)
+                           CMAKE_C_COMPILER_LAUNCHER)
         endif()
       else()
         message(
-          FATAL_ERROR "Thread sanitizer not available for ${CMAKE_CXX_COMPILER}"
+          FATAL_ERROR "Thread sanitizer not available for ${CMAKE_C_COMPILER}"
         )
       endif()
     endif()
@@ -162,11 +162,11 @@ if(USE_SANITIZER)
 
         if(AFL)
           append_quoteless(AFL_USE_LSAN=1 CMAKE_C_COMPILER_LAUNCHER
-                           CMAKE_CXX_COMPILER_LAUNCHER)
+                           CMAKE_C_COMPILER_LAUNCHER)
         endif()
       else()
         message(
-          FATAL_ERROR "Thread sanitizer not available for ${CMAKE_CXX_COMPILER}"
+          FATAL_ERROR "Thread sanitizer not available for ${CMAKE_C_COMPILER}"
         )
       endif()
     endif()
@@ -181,12 +181,12 @@ if(USE_SANITIZER)
 
         if(AFL)
           append_quoteless(AFL_USE_CFISAN=1 CMAKE_C_COMPILER_LAUNCHER
-                           CMAKE_CXX_COMPILER_LAUNCHER)
+                           CMAKE_C_COMPILER_LAUNCHER)
         endif()
       else()
         message(
           FATAL_ERROR
-            "Control Flow Integrity(CFI) sanitizer not available for ${CMAKE_CXX_COMPILER}"
+            "Control Flow Integrity(CFI) sanitizer not available for ${CMAKE_C_COMPILER}"
         )
       endif()
     endif()
@@ -195,7 +195,7 @@ if(USE_SANITIZER)
     test_san_flags(SANITIZER_SELECTED_COMPATIBLE ${SANITIZER_SELECTED_FLAGS})
     if(SANITIZER_SELECTED_COMPATIBLE)
       message(STATUS " Building with ${SANITIZER_SELECTED_FLAGS}")
-      append("${SANITIZER_SELECTED_FLAGS}" CMAKE_C_FLAGS CMAKE_CXX_FLAGS)
+      append("${SANITIZER_SELECTED_FLAGS}" CMAKE_C_FLAGS CMAKE_C_FLAGS)
     else()
       message(
         FATAL_ERROR
@@ -204,11 +204,11 @@ if(USE_SANITIZER)
   elseif(MSVC)
     if(USE_SANITIZER MATCHES "([Aa]ddress)")
       message(STATUS "Building with Address sanitizer")
-      append("-fsanitize=address" CMAKE_C_FLAGS CMAKE_CXX_FLAGS)
+      append("-fsanitize=address" CMAKE_C_FLAGS CMAKE_C_FLAGS)
 
       if(AFL)
         append_quoteless(AFL_USE_ASAN=1 CMAKE_C_COMPILER_LAUNCHER
-                         CMAKE_CXX_COMPILER_LAUNCHER)
+                         CMAKE_C_COMPILER_LAUNCHER)
       endif()
     else()
       message(
