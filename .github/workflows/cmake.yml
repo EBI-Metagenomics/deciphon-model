@@ -32,11 +32,11 @@ jobs:
 
       - name: Configure CMake
         if: runner.os == 'Linux'
-        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DUSE_SANITIZER='Address;Undefined'
+        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DUSE_SANITIZER='Address;Undefined' -DENABLE_ALL_WARNINGS=ON
 
       - name: Configure CMake
         if: runner.os == 'macOS'
-        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DENABLE_ALL_WARNINGS=ON
 
       - name: Build
         run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
