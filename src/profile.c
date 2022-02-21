@@ -1,4 +1,4 @@
-#include "profile.h"
+#include "model/profile.h"
 
 void profile_del(struct profile *prof)
 {

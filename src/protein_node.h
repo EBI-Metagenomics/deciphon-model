@@ -2,7 +2,7 @@
 #define MODEL_PROTEIN_NODE_H
 
 #include "imm/imm.h"
-#include "nuclt_dist.h"
+#include "model/nuclt_dist.h"
 
 struct protein_node
 {

@@ -1,12 +1,12 @@
 #ifndef MODEL_PROTEIN_MODEL_H
 #define MODEL_PROTEIN_MODEL_H
 
-#include "entry_dist.h"
 #include "imm/imm.h"
+#include "model/entry_dist.h"
 #include "model/limits.h"
+#include "model/nuclt_dist.h"
+#include "model/protein_cfg.h"
 #include "model/rc.h"
-#include "nuclt_dist.h"
-#include "protein_cfg.h"
 #include "protein_node.h"
 #include "protein_state.h"
 #include "protein_trans.h"

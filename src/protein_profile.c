@@ -1,13 +1,13 @@
-#include "protein_profile.h"
+#include "model/protein_profile.h"
 #include "imm/imm.h"
 #include "lite_pack/file/file.h"
 #include "lite_pack/lite_pack.h"
 #include "logger.h"
-#include "metadata.h"
-#include "profile.h"
-#include "profile_types.h"
+#include "model/metadata.h"
+#include "model/profile.h"
+#include "model/profile_types.h"
+#include "model/protein_profile.h"
 #include "protein_model.h"
-#include "protein_profile.h"
 #include <assert.h>
 #include <stdlib.h>
 

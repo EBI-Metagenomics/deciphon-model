@@ -1,13 +1,13 @@
-#include "standard_profile.h"
+#include "model/standard_profile.h"
 #include "imm/imm.h"
 #include "lite_pack/file/file.h"
 #include "lite_pack/lite_pack.h"
 #include "logger.h"
-#include "metadata.h"
+#include "model/metadata.h"
+#include "model/profile.h"
+#include "model/profile_types.h"
 #include "model/rc.h"
-#include "profile.h"
-#include "profile_types.h"
-#include "standard_profile.h"
+#include "model/standard_profile.h"
 #include "standard_state.h"
 
 static void del(struct profile *prof)

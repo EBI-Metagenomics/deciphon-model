@@ -17,6 +17,7 @@ add_library(
   src/nuclt_dist.c
   src/profile.c
   src/profile_types.c
+  src/protein_codec.c
   src/protein_model.c
   src/protein_profile.c
   src/protein_state.c
@@ -26,7 +27,8 @@ add_library(
 
 target_include_directories(
   ${PROJECT_NAME}
-  PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
+  PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
+         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
   PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
 target_link_libraries(${PROJECT_NAME} PUBLIC IMM::imm)
@@ -46,4 +48,5 @@ if(CMAKE_BUILD_TYPE STREQUAL "Release")
                                                    TRUE)
 endif()
 
-# enable_testing() add_subdirectory(test)
+enable_testing()
+add_subdirectory(test)

@@ -1,7 +1,7 @@
 #include "protein_model.h"
-#include "entry_dist.h"
 #include "logger.h"
-#include "nuclt_dist.h"
+#include "model/entry_dist.h"
+#include "model/nuclt_dist.h"
 #include "protein_model.h"
 #include "protein_node.h"
 #include <assert.h>
