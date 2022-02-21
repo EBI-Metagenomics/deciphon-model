@@ -1,7 +1,6 @@
-#include "protein_hmmer3_reader.h"
 #include "hope/hope.h"
 #include "imm/imm.h"
-#include "protein_profile.h"
+#include "model/model.h"
 
 static char const sequence[] =
     "GTGCTGGGCAGCAAAAGCCTGACCGCGAAAAGCCTGCTGGGCACCCTGGGCTTTCTGCAT"
@@ -30,19 +29,19 @@ int main(void)
     struct imm_nuclt_code code;
     imm_nuclt_code_init(&code, nuclt);
 
-    FILE *fd = fopen(ASSETS "/PF02545.hmm", "r");
-    NOTNULL(fd);
+    FILE *fp = fopen(ASSETS "/PF02545.hmm", "r");
+    NOTNULL(fp);
     struct protein_cfg cfg = protein_cfg(ENTRY_DIST_OCCUPANCY, 0.01f);
 
-    struct protein_hmmer3_reader reader;
-    protein_hmmer3_reader_init(&reader, amino, &code, cfg, fd);
+    struct protein_h3reader reader = {0};
+    protein_h3reader_init(&reader, amino, &code, cfg, fp);
 
-    EQ(protein_hmmer3_reader_next(&reader), DCP_OK);
+    EQ(protein_h3reader_next(&reader), MODEL_OK);
 
     struct protein_profile prof;
     protein_profile_init(&prof, amino, &code, cfg);
 
-    EQ(protein_profile_absorb(&prof, &reader.model), DCP_OK);
+    EQ(protein_profile_absorb(&prof, &reader.model), MODEL_OK);
 
     struct imm_seq seq = imm_seq(imm_str(sequence), prof.super.code->abc);
 
@@ -57,9 +56,9 @@ int main(void)
     CLOSE(prod.loglik, -1430.9281381240353);
     imm_del(&prod);
 
-    fclose(fd);
+    fclose(fp);
     imm_task_del(task);
     profile_del((struct profile *)&prof);
-    protein_hmmer3_reader_del(&reader);
+    protein_h3reader_del(&reader);
     return hope_status();
 }

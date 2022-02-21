@@ -1,5 +1,5 @@
-#ifndef MODEL_PROFILE_TYPES_H
-#define MODEL_PROFILE_TYPES_H
+#ifndef MODEL_PROFILE_TYPEID_H
+#define MODEL_PROFILE_TYPEID_H
 
 enum profile_typeid
 {

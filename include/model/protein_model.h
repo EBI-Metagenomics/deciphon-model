@@ -6,12 +6,12 @@
 #include "model/limits.h"
 #include "model/nuclt_dist.h"
 #include "model/protein_cfg.h"
-#include "model/rc.h"
 #include "model/protein_node.h"
 #include "model/protein_state.h"
 #include "model/protein_trans.h"
 #include "model/protein_xnode.h"
 #include "model/protein_xtrans.h"
+#include "model/rc.h"
 
 struct protein_model
 {

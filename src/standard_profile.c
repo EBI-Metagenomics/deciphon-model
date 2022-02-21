@@ -5,7 +5,7 @@
 #include "logger.h"
 #include "model/metadata.h"
 #include "model/profile.h"
-#include "model/profile_types.h"
+#include "model/profile_typeid.h"
 #include "model/rc.h"
 #include "model/standard_profile.h"
 #include "model/standard_state.h"

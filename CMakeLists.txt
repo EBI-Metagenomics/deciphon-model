@@ -50,6 +50,7 @@ add_library(
   src/profile.c
   src/profile_types.c
   src/protein_codec.c
+  src/protein_h3reader.c
   src/protein_model.c
   src/protein_profile.c
   src/protein_state.c

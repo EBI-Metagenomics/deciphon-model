@@ -22,9 +22,3 @@ enum model_rc __logger_error(enum model_rc rc, char const *msg)
     log_print(msg);
     return rc;
 }
-
-enum model_rc __logger_warn(enum model_rc rc, char const *msg)
-{
-    log_print(msg);
-    return rc;
-}

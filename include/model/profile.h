@@ -21,12 +21,11 @@ struct profile
     struct profile_vtable vtable;
     imm_state_name *state_name;
     struct imm_code const *code;
-    int idx_within_db;
 };
 
 void profile_del(struct profile *prof);
 
-enum model_rc profile_read(struct profile *prof, struct lip_file *cmp);
+enum model_rc profile_unpack(struct profile *prof, struct lip_file *);
 
 int profile_typeid(struct profile const *prof);
 struct imm_dp const *profile_null_dp(struct profile const *prof);

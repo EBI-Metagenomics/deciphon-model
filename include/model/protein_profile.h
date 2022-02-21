@@ -2,12 +2,12 @@
 #define MODEL_PROTEIN_PROFILE_H
 
 #include "imm/imm.h"
-#include "metadata.h"
 #include "model/limits.h"
+#include "model/metadata.h"
+#include "model/profile.h"
+#include "model/protein_cfg.h"
+#include "model/protein_model.h"
 #include "model/rc.h"
-#include "profile.h"
-#include "protein_cfg.h"
-#include "protein_model.h"
 #include <stdio.h>
 
 struct protein_profile

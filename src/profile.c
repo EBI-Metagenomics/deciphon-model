@@ -5,7 +5,7 @@ void profile_del(struct profile *prof)
     if (prof) prof->vtable.del(prof);
 }
 
-enum model_rc profile_read(struct profile *prof, struct lip_file *file)
+enum model_rc profile_unpack(struct profile *prof, struct lip_file *file)
 {
     return prof->vtable.read(prof, file);
 }
@@ -28,7 +28,6 @@ void profile_init(struct profile *prof, struct imm_code const *code,
     prof->vtable = vtable;
     prof->state_name = state_name;
     prof->code = code;
-    prof->idx_within_db = -1;
 }
 
 void profile_set_state_name(struct profile *prof, imm_state_name *state_name)

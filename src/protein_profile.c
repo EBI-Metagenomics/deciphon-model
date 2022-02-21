@@ -5,7 +5,7 @@
 #include "logger.h"
 #include "model/metadata.h"
 #include "model/profile.h"
-#include "model/profile_types.h"
+#include "model/profile_typeid.h"
 #include "model/protein_model.h"
 #include "model/protein_profile.h"
 #include <assert.h>
@@ -51,7 +51,7 @@ static enum model_rc read(struct profile *prof, struct lip_file *file)
     if (!lip_write_cstr(file, "core_size")) return eio("skip key");
     if (!lip_read_int(file, &size)) return eio("read core size");
     if (size > PROTEIN_MODEL_CORE_SIZE_MAX)
-        return error(MODEL_EPARSE, "profile is too long");
+        return error(MODEL_EIO, "profile is too long");
     p->core_size = size;
 
     if (!lip_write_cstr(file, "consensus")) return eio("skip key");
@@ -97,17 +97,17 @@ static enum model_rc read(struct profile *prof, struct lip_file *file)
     if (rc) return rc;
 
     if (!lip_write_cstr(file, "null_ndist")) return eio("skip key");
-    if ((rc = nuclt_dist_read(&p->null.ndist, file))) return rc;
+    if ((rc = nuclt_dist_unpack(&p->null.ndist, file))) return rc;
 
     if (!lip_write_cstr(file, "alt_insert_ndist")) return eio("skip key");
-    if ((rc = nuclt_dist_read(&p->alt.insert_ndist, file))) return rc;
+    if ((rc = nuclt_dist_unpack(&p->alt.insert_ndist, file))) return rc;
 
     if (!lip_write_cstr(file, "alt_match_ndist")) return eio("skip key");
     if (!lip_read_array_size(file, &size)) return eio("read size");
     assert(size == p->core_size);
     for (unsigned i = 0; i < p->core_size; ++i)
     {
-        if ((rc = nuclt_dist_read(p->alt.match_ndists + i, file))) return rc;
+        if ((rc = nuclt_dist_unpack(p->alt.match_ndists + i, file))) return rc;
         nuclt_dist_init(p->alt.match_ndists + i, p->code->nuclt);
     }
     return MODEL_OK;
@@ -374,12 +374,12 @@ enum model_rc protein_profile_write(struct protein_profile const *prof,
     if (!lip_write_int(file, prof->alt.T)) return eio("write T state");
 
     if (!lip_write_cstr(file, "null_ndist")) return eio("write null_ndist key");
-    enum model_rc rc = nuclt_dist_write(&prof->null.ndist, file);
+    enum model_rc rc = nuclt_dist_pack(&prof->null.ndist, file);
     if (rc) return rc;
 
     if (!lip_write_cstr(file, "alt_insert_ndist"))
         return eio("write alt_insert_ndist key");
-    if ((rc = nuclt_dist_write(&prof->alt.insert_ndist, file))) return rc;
+    if ((rc = nuclt_dist_pack(&prof->alt.insert_ndist, file))) return rc;
 
     if (!lip_write_cstr(file, "alt_match_ndist"))
         return eio("write alt_match_ndist key");
@@ -387,8 +387,7 @@ enum model_rc protein_profile_write(struct protein_profile const *prof,
         return eio("write array length");
     for (unsigned i = 0; i < prof->core_size; ++i)
     {
-        if ((rc = nuclt_dist_write(prof->alt.match_ndists + i, file)))
-            return rc;
+        if ((rc = nuclt_dist_pack(prof->alt.match_ndists + i, file))) return rc;
     }
     return MODEL_OK;
 }

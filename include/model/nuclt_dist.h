@@ -19,9 +19,9 @@ static inline void nuclt_dist_init(struct nuclt_dist *nucltd,
     nucltd->codonm.nuclt = nuclt;
 }
 
-enum model_rc nuclt_dist_write(struct nuclt_dist const *ndist,
-                               struct lip_file *);
+enum model_rc nuclt_dist_pack(struct nuclt_dist const *ndist,
+                              struct lip_file *);
 
-enum model_rc nuclt_dist_read(struct nuclt_dist *ndist, struct lip_file *);
+enum model_rc nuclt_dist_unpack(struct nuclt_dist *ndist, struct lip_file *);
 
 #endif

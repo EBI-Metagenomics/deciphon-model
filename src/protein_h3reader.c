@@ -1,13 +1,13 @@
-#include "protein_hmmer3_reader.h"
-#include "common/compiler.h"
-#include "common/rc.h"
+#include "model/protein_h3reader.h"
+#include "compiler.h"
+#include "model/rc.h"
 
 static void init_null_lprobs(imm_float[IMM_AMINO_SIZE]);
 
-void protein_hmmer3_reader_init(struct protein_hmmer3_reader *reader,
-                                struct imm_amino const *amino,
-                                struct imm_nuclt_code const *code,
-                                struct protein_cfg cfg, FILE *fp)
+void protein_h3reader_init(struct protein_h3reader *reader,
+                           struct imm_amino const *amino,
+                           struct imm_nuclt_code const *code,
+                           struct protein_cfg cfg, FILE *fp)
 {
     hmr_init(&reader->hmr, fp);
     hmr_prof_init(&reader->prof, &reader->hmr);
@@ -15,15 +15,15 @@ void protein_hmmer3_reader_init(struct protein_hmmer3_reader *reader,
     protein_model_init(&reader->model, amino, code, cfg, reader->null_lprobs);
 }
 
-enum rc protein_hmmer3_reader_next(struct protein_hmmer3_reader *reader)
+enum model_rc protein_h3reader_next(struct protein_h3reader *reader)
 {
     enum hmr_rc hmr_rc = hmr_next_prof(&reader->hmr, &reader->prof);
-    if (hmr_rc == HMR_ENDFILE) return RC_END;
+    if (hmr_rc == HMR_ENDFILE) return MODEL_END;
 
-    if (hmr_rc) return DCP_EFAIL;
+    if (hmr_rc) return MODEL_EFAIL;
 
     unsigned core_size = hmr_prof_length(&reader->prof);
-    enum rc rc = DCP_OK;
+    enum model_rc rc = MODEL_OK;
     if ((rc = protein_model_setup(&reader->model, core_size))) return rc;
 
     hmr_rc = hmr_next_node(&reader->hmr, &reader->prof);
@@ -68,16 +68,15 @@ enum rc protein_hmmer3_reader_next(struct protein_hmmer3_reader *reader)
     assert(node_idx == core_size);
     assert(hmr_rc == HMR_ENDNODE);
 
-    return DCP_OK;
+    return MODEL_OK;
 }
 
-void protein_hmmer3_reader_del(struct protein_hmmer3_reader const *reader)
+void protein_h3reader_del(struct protein_h3reader const *reader)
 {
     protein_model_del(&reader->model);
 }
 
-struct metadata
-protein_hmmer3_reader_metadata(struct protein_hmmer3_reader const *reader)
+struct metadata protein_h3reader_metadata(struct protein_h3reader const *reader)
 {
     return metadata(reader->prof.meta.name, reader->prof.meta.acc);
 }
