@@ -8,6 +8,8 @@ project(
 find_package(imm REQUIRED)
 find_package(lite_pack REQUIRED)
 
+include(cmake/sanitizers.cmake)
+
 # Generate compile_commands.json file
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
