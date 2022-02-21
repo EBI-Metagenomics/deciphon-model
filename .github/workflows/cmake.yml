@@ -8,11 +8,13 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    name: Test on ${{ matrix.os }} with build type ${{ matrix.build_type }}
+    runs-on: ${{ matrix.os }}
     env:
       BUILD_TYPE: ${{ matrix.build_type }}
     strategy:
       matrix:
+        os: [ubuntu-latest, macos-latest]
         build_type: [Release, Debug]
 
     steps:
@@ -29,7 +31,12 @@ jobs:
         run: if [ -f install-deps ]; then $SUDO ./install-deps; fi
 
       - name: Configure CMake
+        if: runner.os == 'Linux'
         run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DUSE_SANITIZER='Address;Undefined'
+
+      - name: Configure CMake
+        if: runner.os == 'macOS'
+        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
       - name: Build
         run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}

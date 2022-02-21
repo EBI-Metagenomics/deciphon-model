@@ -9,10 +9,39 @@ find_package(hmr REQUIRED)
 find_package(imm REQUIRED)
 find_package(lite_pack REQUIRED)
 
-include(cmake/sanitizers.cmake)
-
 # Generate compile_commands.json file
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+if(CMAKE_C_COMPILER_ID STREQUAL "MSVC")
+  # /wd5105:
+  # https://docs.microsoft.com/en-us/cpp/error-messages/compiler-warnings/c5105?view=msvc-160
+  set(WARNING_FLAGS /W3 /wd5105)
+else()
+  set(WARNING_FLAGS
+      -Wall
+      -Wextra
+      -Wstrict-prototypes
+      -Wshadow
+      -Wconversion
+      -Wmissing-prototypes
+      -Wsign-conversion
+      -Wno-unused-function
+      -Wmissing-field-initializers)
+
+  if(NOT CMAKE_C_COMPILER_ID STREQUAL "GNU")
+    list(
+      APPEND
+      WARNING_FLAGS
+      -Wno-gnu-designator
+      -Wno-empty-translation-unit
+      -Wno-gnu-statement-expression
+      -Wno-nullability-extension
+      -Wconditional-uninitialized
+      -Wgnu-empty-initializer)
+  endif()
+endif()
+
+include(cmake/sanitizers.cmake)
 
 add_library(
   ${PROJECT_NAME}
@@ -33,7 +62,7 @@ target_include_directories(
   PUBLIC $<INSTALL_INTERFACE:include>
          $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
          $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
-  PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
+  PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>)
 
 target_link_libraries(${PROJECT_NAME} PUBLIC HMR::hmr)
 target_link_libraries(${PROJECT_NAME} PUBLIC IMM::imm)
@@ -42,6 +71,7 @@ target_link_libraries(${PROJECT_NAME} INTERFACE $<$<BOOL:${UNIX}>:m>)
 
 target_compile_features(${PROJECT_NAME} PRIVATE c_std_11)
 
+target_compile_options(${PROJECT_NAME} PRIVATE ${WARNING_FLAGS})
 target_compile_definitions(
   ${PROJECT_NAME} PRIVATE $<$<BOOL:${WIN32}>:_CRT_NONSTDC_NO_DEPRECATE>)
 target_compile_definitions(${PROJECT_NAME} PRIVATE _XOPEN_SOURCE=700)
