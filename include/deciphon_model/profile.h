@@ -1,8 +1,8 @@
 #ifndef MODEL_PROFILE_H
 #define MODEL_PROFILE_H
 
+#include "deciphon_model/rc.h"
 #include "imm/imm.h"
-#include "model/rc.h"
 
 struct lip_file;
 struct profile;

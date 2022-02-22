@@ -1,8 +1,8 @@
 #ifndef MODEL_PROTEIN_NODE_H
 #define MODEL_PROTEIN_NODE_H
 
+#include "deciphon_model/nuclt_dist.h"
 #include "imm/imm.h"
-#include "model/nuclt_dist.h"
 
 struct protein_node
 {

@@ -1,6 +1,6 @@
-#include "model/protein_h3reader.h"
+#include "deciphon_model/protein_h3reader.h"
 #include "compiler.h"
-#include "model/rc.h"
+#include "deciphon_model/rc.h"
 
 static void init_null_lprobs(imm_float[IMM_AMINO_SIZE]);
 

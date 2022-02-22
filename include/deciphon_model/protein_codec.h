@@ -1,7 +1,7 @@
 #ifndef MODEL_PROTEIN_CODEC_H
 #define MODEL_PROTEIN_CODEC_H
 
-#include "model/rc.h"
+#include "deciphon_model/rc.h"
 
 struct imm_codon;
 struct imm_path;

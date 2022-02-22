@@ -1,8 +1,8 @@
 #ifndef MODEL_PROTEIN_STATE_H
 #define MODEL_PROTEIN_STATE_H
 
+#include "deciphon_model/limits.h"
 #include "imm/imm.h"
-#include "model/limits.h"
 
 enum protein_state_id
 {

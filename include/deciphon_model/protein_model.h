@@ -1,17 +1,17 @@
 #ifndef MODEL_PROTEIN_MODEL_H
 #define MODEL_PROTEIN_MODEL_H
 
+#include "deciphon_model/entry_dist.h"
+#include "deciphon_model/limits.h"
+#include "deciphon_model/nuclt_dist.h"
+#include "deciphon_model/protein_cfg.h"
+#include "deciphon_model/protein_node.h"
+#include "deciphon_model/protein_state.h"
+#include "deciphon_model/protein_trans.h"
+#include "deciphon_model/protein_xnode.h"
+#include "deciphon_model/protein_xtrans.h"
+#include "deciphon_model/rc.h"
 #include "imm/imm.h"
-#include "model/entry_dist.h"
-#include "model/limits.h"
-#include "model/nuclt_dist.h"
-#include "model/protein_cfg.h"
-#include "model/protein_node.h"
-#include "model/protein_state.h"
-#include "model/protein_trans.h"
-#include "model/protein_xnode.h"
-#include "model/protein_xtrans.h"
-#include "model/rc.h"
 
 struct protein_model
 {

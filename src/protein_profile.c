@@ -1,13 +1,13 @@
-#include "model/protein_profile.h"
+#include "deciphon_model/protein_profile.h"
+#include "deciphon_model/metadata.h"
+#include "deciphon_model/profile.h"
+#include "deciphon_model/profile_typeid.h"
+#include "deciphon_model/protein_model.h"
+#include "deciphon_model/protein_profile.h"
 #include "imm/imm.h"
 #include "lite_pack/file/file.h"
 #include "lite_pack/lite_pack.h"
 #include "logger.h"
-#include "model/metadata.h"
-#include "model/profile.h"
-#include "model/profile_typeid.h"
-#include "model/protein_model.h"
-#include "model/protein_profile.h"
 #include <assert.h>
 #include <stdlib.h>
 

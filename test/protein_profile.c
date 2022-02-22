@@ -1,6 +1,6 @@
+#include "deciphon_model/model.h"
 #include "hope/hope.h"
 #include "imm/imm.h"
-#include "model/model.h"
 
 void test_protein_profile_uniform(void);
 void test_protein_profile_occupancy(void);

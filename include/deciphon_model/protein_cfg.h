@@ -1,8 +1,8 @@
 #ifndef MODEL_PROTEIN_CFG_H
 #define MODEL_PROTEIN_CFG_H
 
+#include "deciphon_model/entry_dist.h"
 #include "imm/imm.h"
-#include "model/entry_dist.h"
 
 struct protein_cfg
 {

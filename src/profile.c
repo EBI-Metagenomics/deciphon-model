@@ -1,4 +1,4 @@
-#include "model/profile.h"
+#include "deciphon_model/profile.h"
 
 void profile_del(struct profile *prof)
 {

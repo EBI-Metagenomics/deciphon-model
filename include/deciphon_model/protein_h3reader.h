@@ -1,12 +1,12 @@
 #ifndef MODEL_PROTEIN_H3READER_H
 #define MODEL_PROTEIN_H3READER_H
 
+#include "deciphon_model/metadata.h"
+#include "deciphon_model/protein_cfg.h"
+#include "deciphon_model/protein_model.h"
+#include "deciphon_model/rc.h"
 #include "hmr/hmr.h"
 #include "imm/imm.h"
-#include "model/metadata.h"
-#include "model/protein_cfg.h"
-#include "model/protein_model.h"
-#include "model/rc.h"
 #include <stdio.h>
 
 struct protein_h3reader

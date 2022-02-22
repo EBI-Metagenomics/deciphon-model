@@ -1,5 +1,5 @@
-#include "model/protein_state.h"
-#include "model/protein_model.h"
+#include "deciphon_model/protein_state.h"
+#include "deciphon_model/protein_model.h"
 #include "to_str.h"
 
 unsigned protein_state_name(unsigned id, char name[IMM_STATE_NAME_SIZE])

@@ -1,6 +1,6 @@
+#include "deciphon_model/model.h"
 #include "hope/hope.h"
 #include "imm/imm.h"
-#include "model/model.h"
 
 static char const sequence[] =
     "GTGCTGGGCAGCAAAAGCCTGACCGCGAAAAGCCTGCTGGGCACCCTGGGCTTTCTGCAT"

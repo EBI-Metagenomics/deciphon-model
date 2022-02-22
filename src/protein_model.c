@@ -1,9 +1,9 @@
-#include "model/protein_model.h"
+#include "deciphon_model/protein_model.h"
+#include "deciphon_model/entry_dist.h"
+#include "deciphon_model/nuclt_dist.h"
+#include "deciphon_model/protein_model.h"
+#include "deciphon_model/protein_node.h"
 #include "logger.h"
-#include "model/entry_dist.h"
-#include "model/nuclt_dist.h"
-#include "model/protein_model.h"
-#include "model/protein_node.h"
 #include <assert.h>
 #include <limits.h>
 #include <stdlib.h>

@@ -1,8 +1,8 @@
 #ifndef MODEL_STANDARD_PROFILE_H
 #define MODEL_STANDARD_PROFILE_H
 
-#include "model/profile.h"
-#include "model/rc.h"
+#include "deciphon_model/profile.h"
+#include "deciphon_model/rc.h"
 #include <stdio.h>
 
 struct standard_profile

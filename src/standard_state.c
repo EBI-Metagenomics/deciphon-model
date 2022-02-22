@@ -1,4 +1,4 @@
-#include "model/standard_state.h"
+#include "deciphon_model/standard_state.h"
 #include "to_str.h"
 #include <assert.h>
 

@@ -1,13 +1,13 @@
 #ifndef MODEL_PROTEIN_PROFILE_H
 #define MODEL_PROTEIN_PROFILE_H
 
+#include "deciphon_model/limits.h"
+#include "deciphon_model/metadata.h"
+#include "deciphon_model/profile.h"
+#include "deciphon_model/protein_cfg.h"
+#include "deciphon_model/protein_model.h"
+#include "deciphon_model/rc.h"
 #include "imm/imm.h"
-#include "model/limits.h"
-#include "model/metadata.h"
-#include "model/profile.h"
-#include "model/protein_cfg.h"
-#include "model/protein_model.h"
-#include "model/rc.h"
 #include <stdio.h>
 
 struct protein_profile
